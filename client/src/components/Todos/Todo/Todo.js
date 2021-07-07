@@ -1,7 +1,17 @@
 import React from "react";
 import useStyles from "./style";
 
-import { Grid, Card, CardContent, Typography, CardActions, Button } from "@material-ui/core";
+import {
+    Grid,
+    Card,
+    CardContent,
+    Typography,
+    CardActions,
+    Button,
+    IconButton,
+} from "@material-ui/core";
+
+import { Delete as DeleteIcon } from "@material-ui/icons";
 
 const Todo = ({ id, title, description }) => {
     const classes = useStyles();
@@ -12,17 +22,17 @@ const Todo = ({ id, title, description }) => {
                     <Typography gutterBottom variant="h5" component="h2">
                         {title}
                     </Typography>
-                    <Typography variant="body2" component="p">
+                    <Typography variant="body2" component="p" color="">
                         {description}
                     </Typography>
                 </CardContent>
                 <CardActions>
                     <Button className={classes.completeBtn} variant="contained" color="primary">
-                        Mark Completed
+                        Complete
                     </Button>
-                    <Button variant="outlined" color="secondary">
-                        Delete
-                    </Button>
+                    <IconButton>
+                        <DeleteIcon />
+                    </IconButton>
                 </CardActions>
             </Card>
         </Grid>
