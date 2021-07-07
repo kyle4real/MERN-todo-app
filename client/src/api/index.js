@@ -4,8 +4,7 @@ const url = "http://localhost:5000/todos";
 
 export const fetchTodos = async () => {
     try {
-        const response = await axios.get(url);
-        console.log(response);
+        return await axios.get(url);
     } catch (error) {
         console.log(error);
     }

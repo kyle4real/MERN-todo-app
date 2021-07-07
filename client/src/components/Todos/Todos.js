@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useStyles from "./style";
+import * as api from "../../api/index";
 
 import { Container, Grid } from "@material-ui/core";
 
@@ -15,12 +16,18 @@ const Todos = () => {
     const classes = useStyles();
     const [todos, setTodos] = useState([]);
 
-    // useEffect(() => {}, []);
+    useEffect(() => {
+        const getData = async () => {
+            const { data } = await api.fetchTodos();
+            setTodos(data);
+        };
+        getData();
+    }, []);
 
     return (
         <Container className={classes.todoGrid} maxWidth="md">
             <Grid container spacing={4}>
-                {todosArr.map((todoObj) => (
+                {todos.map((todoObj) => (
                     <Todo {...todoObj} key={todoObj.id} />
                 ))}
             </Grid>
