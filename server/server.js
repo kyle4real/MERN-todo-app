@@ -2,9 +2,11 @@ import dotenv from "dotenv";
 dotenv.config({ path: "./config.env" });
 import express from "express";
 import cors from "cors";
+import connectDB from "./config/db.js";
 
 import todosRoutes from "./routes/todos.js";
 
+connectDB();
 const app = express();
 const PORT = process.env.PORT || 5000;
 

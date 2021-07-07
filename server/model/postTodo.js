@@ -1,13 +1,23 @@
 import mongoose from "mongoose";
+import moment from "moment";
 
 const todoSchema = mongoose.Schema({
-    task: String,
-    description: String,
+    task: {
+        type: String,
+        required: "Task is required",
+    },
+    description: {
+        type: String,
+        required: "Description is required",
+    },
     isCompleted: {
         type: Boolean,
         default: false,
     },
-    dueDate: Date,
+    dueDate: {
+        type: Date,
+        default: moment().endOf("day"),
+    },
     createdAt: {
         type: Date,
         default: Date.now(),
