@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useStyles from "./style";
 
 import { Container, Grid } from "@material-ui/core";
@@ -13,6 +13,10 @@ const todosArr = [
 
 const Todos = () => {
     const classes = useStyles();
+    const [todos, setTodos] = useState([]);
+
+    // useEffect(() => {}, []);
+
     return (
         <Container className={classes.todoGrid} maxWidth="md">
             <Grid container spacing={4}>

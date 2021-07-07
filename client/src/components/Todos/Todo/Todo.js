@@ -13,7 +13,7 @@ import {
 
 import { Delete as DeleteIcon } from "@material-ui/icons";
 
-const Todo = ({ id, title, description }) => {
+const Todo = ({ title, description }) => {
     const classes = useStyles();
     return (
         <Grid item xs={12} sm={6} md={4}>
@@ -22,7 +22,7 @@ const Todo = ({ id, title, description }) => {
                     <Typography gutterBottom variant="h5" component="h2">
                         {title}
                     </Typography>
-                    <Typography variant="body2" component="p" color="">
+                    <Typography variant="body2" component="p" color="textSecondary">
                         {description}
                     </Typography>
                 </CardContent>
