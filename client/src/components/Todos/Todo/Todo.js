@@ -31,7 +31,11 @@ const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete, todo
                 style={{ width: "100%" }}
                 badgeContent={
                     !isCompleted ? (
-                        <AccessTimeIcon color="primary" />
+                        editActive ? (
+                            <EditIcon color="secondary" />
+                        ) : (
+                            <AccessTimeIcon color="primary" />
+                        )
                     ) : (
                         <CheckCircleOutlineIcon style={{ color: "green" }} />
                     )

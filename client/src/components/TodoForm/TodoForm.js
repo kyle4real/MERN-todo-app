@@ -94,7 +94,7 @@ const TodoForm = ({ todos, setTodos }) => {
                     <Grid item xs={12} md={4}>
                         <Button
                             variant="outlined"
-                            color="secondary"
+                            color="primary"
                             size="large"
                             type="submit"
                             fullWidth

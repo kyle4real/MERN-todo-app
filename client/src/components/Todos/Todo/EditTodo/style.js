@@ -1,6 +1,12 @@
 import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
+    root: {
+        "& .MuiTextField-root": {
+            marginBottom: theme.spacing(2),
+            width: "100%",
+        },
+    },
     cardContent: {
         flexGrow: 1,
         paddingBottom: "2rem",
@@ -8,10 +14,8 @@ export default makeStyles((theme) => ({
     completeBtn: {
         whiteSpace: "nowrap",
     },
-    cardActions: {
-        justifyContent: "space-between",
-    },
     timeRemaining: {
         fontStyle: "italic",
+        marginBottom: 4,
     },
 }));
