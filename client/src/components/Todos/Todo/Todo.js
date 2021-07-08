@@ -32,7 +32,7 @@ const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete, todo
                 badgeContent={
                     !isCompleted ? (
                         editActive ? (
-                            <EditIcon color="secondary" />
+                            <EditIcon color="secondary" onClick={() => setEditActive(false)} />
                         ) : (
                             <AccessTimeIcon color="primary" />
                         )
