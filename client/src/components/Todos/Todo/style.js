@@ -6,6 +6,7 @@ export default makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         padding: theme.spacing(1),
+        overflow: "visible",
     },
     cardContent: {
         flexGrow: 1,
@@ -13,5 +14,11 @@ export default makeStyles((theme) => ({
     },
     completeBtn: {
         whiteSpace: "nowrap",
+    },
+    cardActions: {
+        justifyContent: "space-between",
+    },
+    timeRemaining: {
+        fontStyle: "italic",
     },
 }));
