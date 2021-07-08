@@ -12,8 +12,8 @@ export const fetchTodos = async () => {
 
 export const createTodo = async (newTodo) => {
     try {
-        const response = await axios.post(url, newTodo);
-        console.log(response);
+        const { data } = await axios.post(url, newTodo);
+        return data._id;
     } catch (error) {
         console.log(error);
     }

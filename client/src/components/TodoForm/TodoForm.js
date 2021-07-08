@@ -4,23 +4,29 @@ import moment from "moment";
 import { Container, TextField, Grid, Button } from "@material-ui/core";
 import useStyle from "./style";
 
+import { createTodo } from "../../api";
+
 const initialTodo = {
     task: "",
     description: "",
     dueDate: moment().endOf("day").format(`YYYY-MM-DDTHH:mm:ss`),
 };
 
-const TodoForm = () => {
+const TodoForm = ({ todos, setTodos }) => {
     const classes = useStyle();
     const [todo, setTodo] = useState(initialTodo);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("submitted");
-    };
 
-    console.log(moment(todo.dueDate));
-    console.log(moment().endOf("day").format(`YYYY-MM-DDTHH:mm:ss`));
+        if (!todo.task || !todo.description) {
+            return;
+        }
+
+        const _id = await createTodo(todo);
+        setTodos([...todos, { ...todo, _id }]);
+        setTodo(initialTodo);
+    };
 
     return (
         <Container maxWidth="md">
@@ -44,6 +50,7 @@ const TodoForm = () => {
                             type="text"
                             variant="outlined"
                             placeholder="make reservations, walk the dog, jog at sunset"
+                            value={todo.task}
                             onChange={(e) => setTodo({ ...todo, task: e.target.value })}
                         />
                     </Grid>
@@ -55,6 +62,7 @@ const TodoForm = () => {
                             placeholder="describe the task"
                             multiline
                             variant="outlined"
+                            value={todo.description}
                             onChange={(e) => setTodo({ ...todo, description: e.target.value })}
                         />
                     </Grid>
