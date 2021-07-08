@@ -1,19 +1,11 @@
 import React, { useState } from "react";
 import useStyles from "./style";
 
-import {
-    CardContent,
-    Typography,
-    CardActions,
-    Button,
-    IconButton,
-    TextField,
-} from "@material-ui/core";
+import { CardContent, Typography, CardActions, Button, TextField } from "@material-ui/core";
 
-import { Edit as EditIcon } from "@material-ui/icons";
 import moment from "moment";
 
-const EditTodo = ({ task, description, dueDate, _id }) => {
+const EditTodo = ({ task, description, dueDate, setEditActive }) => {
     const classes = useStyles();
     const initialTodo = {
         task,
@@ -21,10 +13,25 @@ const EditTodo = ({ task, description, dueDate, _id }) => {
         dueDate: moment(new Date(dueDate)).format(`YYYY-MM-DDTHH:mm:ss`),
     };
     const [todo, setTodo] = useState(initialTodo);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!todo.task || !todo.description) {
+            return;
+        }
+
+        setEditActive(false);
+    };
+
     return (
         <>
-            <CardContent className={classes.cardContent}>
-                <form autoComplete="off" className={`${classes.root}`}>
+            <form
+                autoComplete="off"
+                className={`${classes.root}`}
+                onSubmit={(e) => handleSubmit(e)}
+            >
+                <CardContent className={classes.cardContent}>
                     <TextField
                         name="edit-task"
                         id="edit-task"
@@ -60,24 +67,29 @@ const EditTodo = ({ task, description, dueDate, _id }) => {
                         }}
                         onChange={(e) => setTodo({ ...todo, dueDate: e.target.value })}
                     />
-                </form>
-            </CardContent>
-            <Typography
-                variant="body2"
-                color="secondary"
-                className={classes.timeRemaining}
-                style={{ paddingLeft: 8, lineHeight: 1 }}
-            >
-                due {moment(todo.dueDate).fromNow()}
-            </Typography>
-            <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
-                <Button className={classes.completeBtn} variant="contained" color="secondary">
-                    Save Edit
-                </Button>
-                <Button variant="outlined" color="secondary" type="submit">
-                    Reset
-                </Button>
-            </CardActions>
+                </CardContent>
+                <Typography
+                    variant="body2"
+                    color="secondary"
+                    className={classes.timeRemaining}
+                    style={{ paddingLeft: 8, lineHeight: 1 }}
+                >
+                    due {moment(todo.dueDate).fromNow()}
+                </Typography>
+                <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
+                    <Button
+                        className={classes.completeBtn}
+                        variant="contained"
+                        color="secondary"
+                        type="submit"
+                    >
+                        Save Edit
+                    </Button>
+                    <Button variant="outlined" color="secondary">
+                        Reset
+                    </Button>
+                </CardActions>
+            </form>
         </>
     );
 };

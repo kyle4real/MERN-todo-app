@@ -23,7 +23,7 @@ import moment from "moment";
 
 const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete, todoObj }) => {
     const classes = useStyles();
-    const [editActive, setEditActive] = useState(true);
+    const [editActive, setEditActive] = useState(false);
 
     return (
         <Grid item xs={12} sm={6} md={4}>
@@ -43,7 +43,7 @@ const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete, todo
             >
                 <Card className={classes.todoCard}>
                     {editActive ? (
-                        <EditTodo {...todoObj} />
+                        <EditTodo {...todoObj} setEditActive={setEditActive} />
                     ) : (
                         <>
                             <CardContent className={classes.cardContent}>
@@ -74,7 +74,7 @@ const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete, todo
                                     <IconButton onClick={() => handleDelete(_id)} size="medium">
                                         <DeleteIcon />
                                     </IconButton>
-                                    <IconButton size="medium">
+                                    <IconButton size="medium" onClick={() => setEditActive(true)}>
                                         <EditIcon />
                                     </IconButton>
                                 </div>
