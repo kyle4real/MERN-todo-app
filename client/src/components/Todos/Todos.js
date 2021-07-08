@@ -33,7 +33,7 @@ const Todos = () => {
             )}
             <Grid container spacing={4}>
                 {todos.map((todoObj) => (
-                    <Todo {...todoObj} key={todoObj.id} handleDelete={handleDelete} />
+                    <Todo {...todoObj} key={todoObj._id} handleDelete={handleDelete} />
                 ))}
             </Grid>
         </Container>
