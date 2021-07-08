@@ -16,7 +16,7 @@ const todoSchema = mongoose.Schema({
     },
     dueDate: {
         type: Date,
-        default: new Date(`${moment().endOf("day").format(`YYYY-MM-DDTHH:mm:ss`)}Z`),
+        required: true,
     },
     createdAt: {
         type: Date,

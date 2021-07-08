@@ -21,8 +21,7 @@ export const createTodo = async (newTodo) => {
 
 export const deleteTodo = async (id) => {
     try {
-        const response = await axios.delete(`${url}/${id}`);
-        console.log(response);
+        await axios.delete(`${url}/${id}`);
     } catch (error) {
         console.log(error);
     }

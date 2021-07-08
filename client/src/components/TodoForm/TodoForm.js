@@ -72,7 +72,7 @@ const TodoForm = ({ todos, setTodos }) => {
                             id="due-date"
                             label="Due Date"
                             type="datetime-local"
-                            value={todo.dueDate}
+                            value={todo.dueDate.slice(0, 19)}
                             className={classes.textField}
                             InputLabelProps={{
                                 shrink: true,

@@ -13,7 +13,7 @@ const Todos = ({ setTodos, todos }) => {
         await deleteTodo(id);
         setTodos(todos.filter((todo) => todo._id !== id));
     };
-    console.log(todos.map((todo) => todo._id));
+    // console.log(todos.map((todo) => todo._id));
     return (
         <Container className={classes.todoGrid} maxWidth="md">
             {!todos.length && (
