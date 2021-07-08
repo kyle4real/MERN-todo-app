@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useStyles from "./style";
+import EditTodo from "./EditTodo/EditTodo";
 
 import {
     Grid,
@@ -20,53 +21,62 @@ import {
 } from "@material-ui/icons";
 import moment from "moment";
 
-const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete }) => {
+const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete, todoObj }) => {
     const classes = useStyles();
+    const [editActive, setEditActive] = useState(true);
 
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Badge
+                style={{ width: "100%" }}
                 badgeContent={
-                    isCompleted ? (
+                    !isCompleted ? (
                         <AccessTimeIcon color="primary" />
                     ) : (
                         <CheckCircleOutlineIcon style={{ color: "green" }} />
                     )
                 }
             >
-                <Card className={classes.todoCard} style={{ position: "relative" }}>
-                    <CardContent className={classes.cardContent}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {task}
-                        </Typography>
-                        <Typography variant="body2" component="p" color="textSecondary">
-                            {description}
-                        </Typography>
-                    </CardContent>
-                    <Typography
-                        variant="body2"
-                        color="primary"
-                        className={classes.timeRemaining}
-                        style={{ paddingLeft: 8, lineHeight: 1 }}
-                    >
-                        due {moment(dueDate).fromNow()}
-                    </Typography>
-                    <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
-                        <Button className={classes.completeBtn} variant="contained" color="primary">
-                            Complete
-                        </Button>
-                        <div>
-                            <IconButton onClick={() => handleDelete(_id)} size="medium">
-                                <DeleteIcon />
-                            </IconButton>
-                            <IconButton size="medium">
-                                <EditIcon />
-                            </IconButton>
-                        </div>
-                        {/* <IconButton size="small">
-                        <ExpandMoreIcon />
-                    </IconButton> */}
-                    </CardActions>
+                <Card className={classes.todoCard}>
+                    {editActive ? (
+                        <EditTodo {...todoObj} />
+                    ) : (
+                        <>
+                            <CardContent className={classes.cardContent}>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {task}
+                                </Typography>
+                                <Typography variant="body2" component="p" color="textSecondary">
+                                    {description}
+                                </Typography>
+                            </CardContent>
+                            <Typography
+                                variant="body2"
+                                color="primary"
+                                className={classes.timeRemaining}
+                                style={{ paddingLeft: 8, lineHeight: 1 }}
+                            >
+                                due {moment(dueDate).fromNow()}
+                            </Typography>
+                            <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
+                                <Button
+                                    className={classes.completeBtn}
+                                    variant="contained"
+                                    color="primary"
+                                >
+                                    Complete
+                                </Button>
+                                <div>
+                                    <IconButton onClick={() => handleDelete(_id)} size="medium">
+                                        <DeleteIcon />
+                                    </IconButton>
+                                    <IconButton size="medium">
+                                        <EditIcon />
+                                    </IconButton>
+                                </div>
+                            </CardActions>
+                        </>
+                    )}
                 </Card>
             </Badge>
         </Grid>

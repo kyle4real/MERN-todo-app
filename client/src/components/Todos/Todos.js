@@ -23,7 +23,12 @@ const Todos = ({ setTodos, todos }) => {
             )}
             <Grid container spacing={4}>
                 {todos.map((todoObj) => (
-                    <Todo {...todoObj} key={todoObj._id} handleDelete={handleDelete} />
+                    <Todo
+                        {...todoObj}
+                        key={todoObj._id}
+                        handleDelete={handleDelete}
+                        todoObj={todoObj}
+                    />
                 ))}
             </Grid>
         </Container>
