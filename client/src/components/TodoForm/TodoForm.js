@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import moment from "moment";
 
 import { Container, TextField, Grid, Button } from "@material-ui/core";
 import useStyle from "./style";
 
+const initialTodo = {
+    task: "",
+    description: "",
+    dueDate: moment().endOf("day").format(`YYYY-MM-DDTHH:mm:ss`),
+};
+
 const TodoForm = () => {
     const classes = useStyle();
+    const [todo, setTodo] = useState(initialTodo);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("submitted");
     };
+
+    console.log(todo);
+
     return (
         <Container maxWidth="md">
             <form
@@ -32,27 +43,32 @@ const TodoForm = () => {
                             type="text"
                             variant="outlined"
                             placeholder="make reservations, walk the dog, jog at sunset"
+                            onChange={(e) => setTodo({ ...todo, task: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <TextField
-                            id="outlined-textarea"
+                            name="task-description"
+                            id="task-description"
                             label="Task Description"
                             placeholder="describe the task"
                             multiline
                             variant="outlined"
+                            onChange={(e) => setTodo({ ...todo, description: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <TextField
-                            id="datetime-local"
+                            name="due-date"
+                            id="due-date"
                             label="Due Date"
                             type="datetime-local"
-                            defaultValue="2017-05-24T10:30"
+                            value={todo.dueDate}
                             className={classes.textField}
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                            onChange={(e) => setTodo({ ...todo, dueDate: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={12} md={4} className={classes.buttonGridItem}>
