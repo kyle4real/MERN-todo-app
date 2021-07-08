@@ -19,7 +19,8 @@ const TodoForm = () => {
         console.log("submitted");
     };
 
-    console.log(todo);
+    console.log(moment(todo.dueDate));
+    console.log(moment().endOf("day").format(`YYYY-MM-DDTHH:mm:ss`));
 
     return (
         <Container maxWidth="md">
