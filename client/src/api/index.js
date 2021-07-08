@@ -26,3 +26,12 @@ export const deleteTodo = async (id) => {
         console.log(error);
     }
 };
+
+export const editTodo = async (id, newTodo) => {
+    try {
+        const { data } = await axios.put(`${url}/${id}`, newTodo);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};
