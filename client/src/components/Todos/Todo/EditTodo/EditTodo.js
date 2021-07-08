@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useStyles from "./style";
 
 import { CardContent, Typography, CardActions, Button, IconButton } from "@material-ui/core";
@@ -8,6 +8,11 @@ import moment from "moment";
 
 const EditTodo = ({ task, description, dueDate, _id }) => {
     const classes = useStyles();
+    const [todo, setTodo] = useState({
+        task,
+        description,
+        dueDate,
+    });
     return (
         <>
             <CardContent className={classes.cardContent}>
@@ -28,7 +33,7 @@ const EditTodo = ({ task, description, dueDate, _id }) => {
             </Typography>
             <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
                 <Button className={classes.completeBtn} variant="contained" color="primary">
-                    Complete
+                    Save Edit
                 </Button>
                 <IconButton size="medium">
                     <EditIcon />
