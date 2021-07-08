@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useStyles from "./style";
 
 import { CardContent, Typography, CardActions, Button, TextField } from "@material-ui/core";
@@ -24,6 +24,8 @@ const EditTodo = ({ task, description, dueDate, setEditActive }) => {
         setEditActive(false);
     };
 
+    console.log(JSON.stringify(initialTodo) !== JSON.stringify(todo));
+
     return (
         <>
             <form
@@ -41,7 +43,9 @@ const EditTodo = ({ task, description, dueDate, setEditActive }) => {
                         variant="outlined"
                         value={todo.task}
                         color="secondary"
-                        onChange={(e) => setTodo({ ...todo, task: e.target.value })}
+                        onChange={(e) => {
+                            setTodo({ ...todo, task: e.target.value });
+                        }}
                     />
                     <TextField
                         name="edit-description"
@@ -85,7 +89,11 @@ const EditTodo = ({ task, description, dueDate, setEditActive }) => {
                     >
                         Save Edit
                     </Button>
-                    <Button variant="outlined" color="secondary">
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        onClick={() => setTodo(initialTodo)}
+                    >
                         Reset
                     </Button>
                 </CardActions>
