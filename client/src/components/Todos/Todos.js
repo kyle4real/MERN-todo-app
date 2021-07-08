@@ -5,6 +5,7 @@ import * as api from "../../api/index";
 import { Container, Grid, CircularProgress } from "@material-ui/core";
 
 import Todo from "./Todo/Todo";
+import { deleteTodo } from "../../api";
 
 const Todos = () => {
     const classes = useStyles();
@@ -18,6 +19,11 @@ const Todos = () => {
         getData();
     }, []);
 
+    const handleDelete = async (id) => {
+        await deleteTodo(id);
+        setTodos(todos.filter((todo) => todo._id !== id));
+    };
+
     return (
         <Container className={classes.todoGrid} maxWidth="md">
             {!todos.length && (
@@ -27,7 +33,7 @@ const Todos = () => {
             )}
             <Grid container spacing={4}>
                 {todos.map((todoObj) => (
-                    <Todo {...todoObj} key={todoObj.id} />
+                    <Todo {...todoObj} key={todoObj.id} handleDelete={handleDelete} />
                 ))}
             </Grid>
         </Container>

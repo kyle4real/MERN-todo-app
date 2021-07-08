@@ -18,3 +18,12 @@ export const createTodo = async (newTodo) => {
         console.log(error);
     }
 };
+
+export const deleteTodo = async (id) => {
+    try {
+        const response = await axios.delete(`${url}/${id}`);
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+};

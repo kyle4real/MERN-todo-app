@@ -13,8 +13,9 @@ import {
 
 import { Delete as DeleteIcon } from "@material-ui/icons";
 
-const Todo = ({ task, description }) => {
+const Todo = ({ _id, task, description, handleDelete }) => {
     const classes = useStyles();
+
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Card className={classes.todoCard}>
@@ -30,7 +31,7 @@ const Todo = ({ task, description }) => {
                     <Button className={classes.completeBtn} variant="contained" color="primary">
                         Complete
                     </Button>
-                    <IconButton>
+                    <IconButton onClick={() => handleDelete(_id)}>
                         <DeleteIcon />
                     </IconButton>
                 </CardActions>
