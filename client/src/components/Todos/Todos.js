@@ -24,23 +24,31 @@ const Todos = ({ setTodos, todos }) => {
                     </div>
                 )}
                 <Grid container spacing={4} className={classes.todoGrid}>
-                    {todos.map((todoObj) => (
-                        <Todo
-                            {...todoObj}
-                            key={todoObj._id}
-                            handleDelete={handleDelete}
-                            todoObj={todoObj}
-                            setTodos={setTodos}
-                            todos={todos}
-                        />
-                    ))}
+                    {todos
+                        .filter((todoObj) => !todoObj.isCompleted)
+                        .map((todoObj) => (
+                            <Todo
+                                {...todoObj}
+                                key={todoObj._id}
+                                handleDelete={handleDelete}
+                                todoObj={todoObj}
+                                setTodos={setTodos}
+                                todos={todos}
+                            />
+                        ))}
                 </Grid>
             </Container>
             <Container maxWidth="md" className={classes.todoContainer}>
                 <Grid container spacing={4} className={classes.todoGrid}>
-                    {todos.map((todoObj) => (
-                        <CompletedTodo {...todoObj} key={todoObj._id} handleDelete={handleDelete} />
-                    ))}
+                    {todos
+                        .filter((todoObj) => todoObj.isCompleted)
+                        .map((todoObj) => (
+                            <CompletedTodo
+                                {...todoObj}
+                                key={todoObj._id}
+                                handleDelete={handleDelete}
+                            />
+                        ))}
                 </Grid>
             </Container>
         </>
