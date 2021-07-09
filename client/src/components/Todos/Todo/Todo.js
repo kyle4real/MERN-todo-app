@@ -69,7 +69,7 @@ const Todo = ({
                                 variant="body2"
                                 color="primary"
                                 className={classes.timeRemaining}
-                                style={{ paddingLeft: 8, marginBottom: 1, lineHeight: 1 }}
+                                style={{ paddingLeft: 8, marginBottom: 2, lineHeight: 1 }}
                             >
                                 created {moment(createdAt).toNow(true)} ago
                             </Typography>

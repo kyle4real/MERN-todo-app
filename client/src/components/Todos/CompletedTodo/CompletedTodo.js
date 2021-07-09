@@ -18,8 +18,18 @@ import {
 } from "@material-ui/icons";
 import moment from "moment";
 
-const CompletedTodo = ({ task, description, handleDelete, handleCompletedUpdate, _id }) => {
+const CompletedTodo = ({
+    task,
+    description,
+    handleDelete,
+    handleCompletedUpdate,
+    _id,
+    createdAt,
+    dueDate,
+    completedAt,
+}) => {
     const classes = useStyles();
+    console.log(completedAt > dueDate);
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Badge
@@ -35,14 +45,36 @@ const CompletedTodo = ({ task, description, handleDelete, handleCompletedUpdate,
                             {description}
                         </Typography>
                     </CardContent>
-                    {/* <Typography
+                    <Typography
                         variant="body2"
-                        color="primary"
+                        color="textPrimary"
+                        className={classes.timeRemaining}
+                        style={{ paddingLeft: 8, marginBottom: 2, lineHeight: 1 }}
+                    >
+                        completed in just {moment(createdAt).to(completedAt, true)}
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        color="textPrimary"
+                        className={classes.timeRemaining}
+                        style={{ paddingLeft: 8, marginBottom: 2, lineHeight: 1 }}
+                    >
+                        completed {moment(completedAt).toNow(true)} ago
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        color="textPrimary"
                         className={classes.timeRemaining}
                         style={{ paddingLeft: 8, lineHeight: 1 }}
                     >
-                        due {moment(dueDate).fromNow()}
-                    </Typography> */}
+                        completed {moment(completedAt).to(dueDate, true)}{" "}
+                        {completedAt < dueDate ? (
+                            <span style={{ color: "green" }}>before</span>
+                        ) : (
+                            <span style={{ color: "red" }}>after</span>
+                        )}{" "}
+                        due
+                    </Typography>
                     <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
                         <div>
                             <Button className={classes.completeBtn} variant="contained" disabled>
