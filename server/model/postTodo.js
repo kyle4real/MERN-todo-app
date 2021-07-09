@@ -5,10 +5,12 @@ const todoSchema = mongoose.Schema({
     task: {
         type: String,
         required: "Task is required",
+        trim: true,
     },
     description: {
         type: String,
         required: "Description is required",
+        trim: true,
     },
     isCompleted: {
         type: Boolean,
@@ -21,6 +23,10 @@ const todoSchema = mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now(),
+    },
+    completedAt: {
+        type: Date,
+        default: null,
     },
 });
 
