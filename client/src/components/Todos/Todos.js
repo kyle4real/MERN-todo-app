@@ -15,7 +15,8 @@ const Todos = ({ setTodos, todos, fetching }) => {
         setTodos(todos.filter((todo) => todo._id !== id));
     };
     const handleCompletedUpdate = async (id, isCompleted) => {
-        const newTodo = await editTodo(id, { isCompleted });
+        const completedAt = isCompleted ? Date.now() : null;
+        const newTodo = await editTodo(id, { isCompleted, completedAt });
         setTodos(todos.map((current) => (current._id !== id ? current : newTodo)));
     };
     return (
