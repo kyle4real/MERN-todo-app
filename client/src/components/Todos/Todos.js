@@ -28,6 +28,8 @@ const Todos = ({ setTodos, todos }) => {
                         key={todoObj._id}
                         handleDelete={handleDelete}
                         todoObj={todoObj}
+                        setTodos={setTodos}
+                        todos={todos}
                     />
                 ))}
             </Grid>

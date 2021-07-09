@@ -21,7 +21,17 @@ import {
 } from "@material-ui/icons";
 import moment from "moment";
 
-const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete, todoObj }) => {
+const Todo = ({
+    _id,
+    task,
+    description,
+    dueDate,
+    isCompleted,
+    handleDelete,
+    todoObj,
+    setTodos,
+    todos,
+}) => {
     const classes = useStyles();
     const [editActive, setEditActive] = useState(false);
 
@@ -43,7 +53,12 @@ const Todo = ({ _id, task, description, dueDate, isCompleted, handleDelete, todo
             >
                 <Card className={classes.todoCard}>
                     {editActive ? (
-                        <EditTodo {...todoObj} setEditActive={setEditActive} />
+                        <EditTodo
+                            {...todoObj}
+                            setEditActive={setEditActive}
+                            setTodos={setTodos}
+                            todos={todos}
+                        />
                     ) : (
                         <>
                             <CardContent className={classes.cardContent}>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import useStyles from "./style";
+import { editTodo } from "../../../../api";
 
 import { CardContent, Typography, CardActions, Button, TextField } from "@material-ui/core";
 
 import moment from "moment";
 
-const EditTodo = ({ task, description, dueDate, setEditActive }) => {
+const EditTodo = ({ task, description, _id, dueDate, setEditActive, setTodos, todos }) => {
     const classes = useStyles();
     const initialTodo = {
         task,
@@ -14,13 +15,16 @@ const EditTodo = ({ task, description, dueDate, setEditActive }) => {
     };
     const [todo, setTodo] = useState(initialTodo);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!todo.task || !todo.description) {
             return;
         }
 
+        const newTodo = await editTodo(_id, todo);
+        console.log(newTodo);
+        setTodos(todos.map((current) => (current._id !== _id ? current : newTodo)));
         setEditActive(false);
     };
 
