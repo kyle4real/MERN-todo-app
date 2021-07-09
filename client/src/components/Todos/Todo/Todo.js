@@ -30,6 +30,7 @@ const Todo = ({
     todoObj,
     setTodos,
     todos,
+    createdAt,
 }) => {
     const classes = useStyles();
     const [editActive, setEditActive] = useState(false);
@@ -64,6 +65,14 @@ const Todo = ({
                                     {description}
                                 </Typography>
                             </CardContent>
+                            <Typography
+                                variant="body2"
+                                color="primary"
+                                className={classes.timeRemaining}
+                                style={{ paddingLeft: 8, marginBottom: 1, lineHeight: 1 }}
+                            >
+                                created {moment(createdAt).toNow(true)} ago
+                            </Typography>
                             <Typography
                                 variant="body2"
                                 color="primary"
