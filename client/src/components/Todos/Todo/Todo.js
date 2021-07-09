@@ -20,7 +20,17 @@ import {
 } from "@material-ui/icons";
 import moment from "moment";
 
-const Todo = ({ _id, task, description, dueDate, handleDelete, todoObj, setTodos, todos }) => {
+const Todo = ({
+    _id,
+    task,
+    description,
+    dueDate,
+    handleDelete,
+    handleCompletedUpdate,
+    todoObj,
+    setTodos,
+    todos,
+}) => {
     const classes = useStyles();
     const [editActive, setEditActive] = useState(false);
 
@@ -67,6 +77,7 @@ const Todo = ({ _id, task, description, dueDate, handleDelete, todoObj, setTodos
                                     className={classes.completeBtn}
                                     variant="contained"
                                     color="primary"
+                                    onClick={() => handleCompletedUpdate(_id, true)}
                                 >
                                     Complete
                                 </Button>

@@ -5,7 +5,7 @@ import { Container, Grid, CircularProgress } from "@material-ui/core";
 
 import Todo from "./Todo/Todo";
 import CompletedTodo from "./CompletedTodo/CompletedTodo";
-import { deleteTodo } from "../../api";
+import { deleteTodo, editTodo } from "../../api";
 
 const Todos = ({ setTodos, todos }) => {
     const classes = useStyles();
@@ -14,7 +14,10 @@ const Todos = ({ setTodos, todos }) => {
         await deleteTodo(id);
         setTodos(todos.filter((todo) => todo._id !== id));
     };
-    // console.log(todos.map((todo) => todo._id));
+    const handleCompletedUpdate = async (id, isCompleted) => {
+        const newTodo = await editTodo(id, { isCompleted });
+        setTodos(todos.map((current) => (current._id !== id ? current : newTodo)));
+    };
     return (
         <>
             <Container maxWidth="md" className={classes.todoContainer}>
@@ -31,6 +34,7 @@ const Todos = ({ setTodos, todos }) => {
                                 {...todoObj}
                                 key={todoObj._id}
                                 handleDelete={handleDelete}
+                                handleCompletedUpdate={handleCompletedUpdate}
                                 todoObj={todoObj}
                                 setTodos={setTodos}
                                 todos={todos}
@@ -47,6 +51,7 @@ const Todos = ({ setTodos, todos }) => {
                                 {...todoObj}
                                 key={todoObj._id}
                                 handleDelete={handleDelete}
+                                handleCompletedUpdate={handleCompletedUpdate}
                             />
                         ))}
                 </Grid>

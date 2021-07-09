@@ -18,7 +18,7 @@ import {
 } from "@material-ui/icons";
 import moment from "moment";
 
-const CompletedTodo = ({ task, description, handleDelete, _id }) => {
+const CompletedTodo = ({ task, description, handleDelete, handleCompletedUpdate, _id }) => {
     const classes = useStyles();
     return (
         <Grid item xs={12} sm={6} md={4}>
@@ -44,14 +44,19 @@ const CompletedTodo = ({ task, description, handleDelete, _id }) => {
                         due {moment(dueDate).fromNow()}
                     </Typography> */}
                     <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
-                        <Button className={classes.completeBtn} variant="contained" color="green">
-                            Completed
-                        </Button>
                         <div>
-                            <IconButton onClick={() => handleDelete(_id)} size="medium">
-                                <DeleteIcon />
-                            </IconButton>
+                            <Button
+                                className={classes.completeBtn}
+                                variant="contained"
+                                color="green"
+                            >
+                                Completed
+                            </Button>
+                            <Button onClick={() => handleCompletedUpdate(_id, false)}>undo</Button>
                         </div>
+                        <IconButton onClick={() => handleDelete(_id)} size="medium">
+                            <DeleteIcon />
+                        </IconButton>
                     </CardActions>
                 </Card>
             </Badge>
