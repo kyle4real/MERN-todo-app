@@ -28,6 +28,10 @@ const TodoForm = ({ todos, setTodos }) => {
         setTodo(initialTodo);
     };
 
+    const handleReset = () => {
+        setTodo(initialTodo);
+    };
+
     return (
         <Container maxWidth="md">
             <form
@@ -96,7 +100,7 @@ const TodoForm = ({ todos, setTodos }) => {
                             variant="outlined"
                             color="primary"
                             size="large"
-                            type="submit"
+                            onClick={handleReset}
                             fullWidth
                         >
                             Reset
