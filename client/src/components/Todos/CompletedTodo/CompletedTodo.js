@@ -29,7 +29,6 @@ const CompletedTodo = ({
     completedAt,
 }) => {
     const classes = useStyles();
-    console.log(completedAt > dueDate);
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Badge
@@ -51,7 +50,7 @@ const CompletedTodo = ({
                         className={classes.timeRemaining}
                         style={{ paddingLeft: 8, marginBottom: 2, lineHeight: 1 }}
                     >
-                        completed in just {moment(createdAt).to(completedAt, true)}
+                        completed {moment(completedAt).toNow(true)} ago
                     </Typography>
                     <Typography
                         variant="body2"
@@ -59,7 +58,7 @@ const CompletedTodo = ({
                         className={classes.timeRemaining}
                         style={{ paddingLeft: 8, marginBottom: 2, lineHeight: 1 }}
                     >
-                        completed {moment(completedAt).toNow(true)} ago
+                        completed in just {moment(createdAt).to(completedAt, true)}
                     </Typography>
                     <Typography
                         variant="body2"

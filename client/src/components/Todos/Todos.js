@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useStyles from "./style";
 
 import { Container, Grid, CircularProgress, Typography } from "@material-ui/core";
@@ -7,8 +7,19 @@ import Todo from "./Todo/Todo";
 import CompletedTodo from "./CompletedTodo/CompletedTodo";
 import { deleteTodo, editTodo } from "../../api";
 
+const updateEvery = 15; //seconds
+
 const Todos = ({ setTodos, todos, fetching }) => {
     const classes = useStyles();
+    const [timer, setTimer] = useState(new Date());
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            console.log(`this will run every ${updateEvery} seconds!`);
+            setTimer(new Date());
+        }, updateEvery * 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     const handleDelete = async (id) => {
         await deleteTodo(id);
