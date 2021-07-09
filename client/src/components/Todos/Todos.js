@@ -1,13 +1,13 @@
 import React from "react";
 import useStyles from "./style";
 
-import { Container, Grid, CircularProgress } from "@material-ui/core";
+import { Container, Grid, CircularProgress, Typography } from "@material-ui/core";
 
 import Todo from "./Todo/Todo";
 import CompletedTodo from "./CompletedTodo/CompletedTodo";
 import { deleteTodo, editTodo } from "../../api";
 
-const Todos = ({ setTodos, todos }) => {
+const Todos = ({ setTodos, todos, fetching }) => {
     const classes = useStyles();
 
     const handleDelete = async (id) => {
@@ -21,25 +21,33 @@ const Todos = ({ setTodos, todos }) => {
     return (
         <>
             <Container maxWidth="md" className={classes.todoContainer}>
-                {!todos.length && (
+                {fetching && (
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <CircularProgress color="primary" />
                     </div>
                 )}
                 <Grid container spacing={4} className={classes.todoGrid}>
-                    {todos
-                        .filter((todoObj) => !todoObj.isCompleted)
-                        .map((todoObj) => (
-                            <Todo
-                                {...todoObj}
-                                key={todoObj._id}
-                                handleDelete={handleDelete}
-                                handleCompletedUpdate={handleCompletedUpdate}
-                                todoObj={todoObj}
-                                setTodos={setTodos}
-                                todos={todos}
-                            />
-                        ))}
+                    {todos.length
+                        ? todos
+                              .filter((todoObj) => !todoObj.isCompleted)
+                              .map((todoObj) => (
+                                  <Todo
+                                      {...todoObj}
+                                      key={todoObj._id}
+                                      handleDelete={handleDelete}
+                                      handleCompletedUpdate={handleCompletedUpdate}
+                                      todoObj={todoObj}
+                                      setTodos={setTodos}
+                                      todos={todos}
+                                  />
+                              ))
+                        : !fetching && (
+                              <Grid item>
+                                  <Typography component="p" variant="body2">
+                                      No Todos
+                                  </Typography>
+                              </Grid>
+                          )}
                 </Grid>
             </Container>
             <Container maxWidth="md" className={classes.todoContainer}>

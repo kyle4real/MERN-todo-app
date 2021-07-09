@@ -8,5 +8,6 @@ export default makeStyles(() => ({
     todoGrid: {
         paddingBottom: "1rem",
         marginBottom: "2rem",
+        justifyContent: "center",
     },
 }));

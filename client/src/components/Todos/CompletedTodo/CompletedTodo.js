@@ -45,11 +45,7 @@ const CompletedTodo = ({ task, description, handleDelete, handleCompletedUpdate,
                     </Typography> */}
                     <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
                         <div>
-                            <Button
-                                className={classes.completeBtn}
-                                variant="contained"
-                                color="green"
-                            >
+                            <Button className={classes.completeBtn} variant="contained" disabled>
                                 Completed
                             </Button>
                             <Button onClick={() => handleCompletedUpdate(_id, false)}>undo</Button>
