@@ -4,6 +4,7 @@ import useStyles from "./style";
 import { Container, Grid, CircularProgress } from "@material-ui/core";
 
 import Todo from "./Todo/Todo";
+import CompletedTodo from "./CompletedTodo/CompletedTodo";
 import { deleteTodo } from "../../api";
 
 const Todos = ({ setTodos, todos }) => {
@@ -15,37 +16,34 @@ const Todos = ({ setTodos, todos }) => {
     };
     // console.log(todos.map((todo) => todo._id));
     return (
-        <Container maxWidth="md">
-            {!todos.length && (
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <CircularProgress color="primary" />
-                </div>
-            )}
-            <Grid container spacing={4} className={classes.todoGrid}>
-                {todos.map((todoObj) => (
-                    <Todo
-                        {...todoObj}
-                        key={todoObj._id}
-                        handleDelete={handleDelete}
-                        todoObj={todoObj}
-                        setTodos={setTodos}
-                        todos={todos}
-                    />
-                ))}
-            </Grid>
-            <Grid container spacing={4}>
-                {todos.map((todoObj) => (
-                    <Todo
-                        {...todoObj}
-                        key={todoObj._id}
-                        handleDelete={handleDelete}
-                        todoObj={todoObj}
-                        setTodos={setTodos}
-                        todos={todos}
-                    />
-                ))}
-            </Grid>
-        </Container>
+        <>
+            <Container maxWidth="md" className={classes.todoContainer}>
+                {!todos.length && (
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <CircularProgress color="primary" />
+                    </div>
+                )}
+                <Grid container spacing={4} className={classes.todoGrid}>
+                    {todos.map((todoObj) => (
+                        <Todo
+                            {...todoObj}
+                            key={todoObj._id}
+                            handleDelete={handleDelete}
+                            todoObj={todoObj}
+                            setTodos={setTodos}
+                            todos={todos}
+                        />
+                    ))}
+                </Grid>
+            </Container>
+            <Container maxWidth="md" className={classes.todoContainer}>
+                <Grid container spacing={4} className={classes.todoGrid}>
+                    {todos.map((todoObj) => (
+                        <CompletedTodo {...todoObj} key={todoObj._id} handleDelete={handleDelete} />
+                    ))}
+                </Grid>
+            </Container>
+        </>
     );
 };
 

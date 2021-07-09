@@ -1,4 +1,5 @@
 import React from "react";
+import useStyles from "./style";
 
 import {
     Grid,
@@ -17,7 +18,8 @@ import {
 } from "@material-ui/icons";
 import moment from "moment";
 
-const CompletedTodo = () => {
+const CompletedTodo = ({ task, description, handleDelete, _id }) => {
+    const classes = useStyles();
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Badge
@@ -33,17 +35,17 @@ const CompletedTodo = () => {
                             {description}
                         </Typography>
                     </CardContent>
-                    <Typography
+                    {/* <Typography
                         variant="body2"
                         color="primary"
                         className={classes.timeRemaining}
                         style={{ paddingLeft: 8, lineHeight: 1 }}
                     >
                         due {moment(dueDate).fromNow()}
-                    </Typography>
+                    </Typography> */}
                     <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
-                        <Button className={classes.completeBtn} variant="contained" color="primary">
-                            Complete
+                        <Button className={classes.completeBtn} variant="contained" color="green">
+                            Completed
                         </Button>
                         <div>
                             <IconButton onClick={() => handleDelete(_id)} size="medium">
