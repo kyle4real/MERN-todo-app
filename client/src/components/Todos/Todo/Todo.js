@@ -38,7 +38,7 @@ const Todo = ({
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Badge
-                style={{ width: "100%" }}
+                style={{ width: "100%", height: "100%" }}
                 badgeContent={
                     !isCompleted ? (
                         editActive ? (
