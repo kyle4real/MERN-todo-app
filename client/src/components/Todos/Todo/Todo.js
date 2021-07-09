@@ -21,17 +21,7 @@ import {
 } from "@material-ui/icons";
 import moment from "moment";
 
-const Todo = ({
-    _id,
-    task,
-    description,
-    dueDate,
-    isCompleted,
-    handleDelete,
-    todoObj,
-    setTodos,
-    todos,
-}) => {
+const Todo = ({ _id, task, description, dueDate, handleDelete, todoObj, setTodos, todos }) => {
     const classes = useStyles();
     const [editActive, setEditActive] = useState(false);
 
@@ -40,14 +30,10 @@ const Todo = ({
             <Badge
                 style={{ width: "100%", height: "100%" }}
                 badgeContent={
-                    !isCompleted ? (
-                        editActive ? (
-                            <EditIcon color="secondary" onClick={() => setEditActive(false)} />
-                        ) : (
-                            <AccessTimeIcon color="primary" />
-                        )
+                    editActive ? (
+                        <EditIcon color="secondary" onClick={() => setEditActive(false)} />
                     ) : (
-                        <CheckCircleOutlineIcon style={{ color: "green" }} />
+                        <AccessTimeIcon color="primary" />
                     )
                 }
             >
