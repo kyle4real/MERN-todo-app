@@ -18,4 +18,13 @@ export default makeStyles((theme) => ({
         fontStyle: "italic",
         marginBottom: 4,
     },
+    cardActions: {
+        justifyContent: "space-between",
+        "$ > div": {
+            display: "flex",
+        },
+        "& > div > button:nth-child(1)": {
+            marginRight: 8,
+        },
+    },
 }));

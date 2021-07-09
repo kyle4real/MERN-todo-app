@@ -85,20 +85,26 @@ const EditTodo = ({ task, description, _id, dueDate, setEditActive, setTodos, to
                     due {moment(todo.dueDate).fromNow()}
                 </Typography>
                 <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
-                    <Button
-                        className={classes.completeBtn}
-                        variant="contained"
-                        color="secondary"
-                        type="submit"
-                    >
-                        Save Edit
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        color="secondary"
-                        onClick={() => setTodo(initialTodo)}
-                    >
-                        Reset
+                    <div>
+                        <Button
+                            className={classes.completeBtn}
+                            variant="contained"
+                            color="secondary"
+                            type="submit"
+                        >
+                            Save Edit
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="secondary"
+                            onClick={() => setTodo(initialTodo)}
+                            size="small"
+                        >
+                            Reset
+                        </Button>
+                    </div>
+                    <Button size="small" color="textPrimary" onClick={() => setEditActive(false)}>
+                        Cancel
                     </Button>
                 </CardActions>
             </form>
