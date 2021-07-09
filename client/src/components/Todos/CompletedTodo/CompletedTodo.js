@@ -58,7 +58,7 @@ const CompletedTodo = ({
                         className={classes.timeRemaining}
                         style={{ paddingLeft: 8, marginBottom: 2, lineHeight: 1 }}
                     >
-                        completed in just {moment(createdAt).to(completedAt, true)}
+                        completed in under {moment(createdAt).to(completedAt, true)}
                     </Typography>
                     <Typography
                         variant="body2"

@@ -15,7 +15,7 @@ const Todos = ({ setTodos, todos, fetching }) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            console.log(`this will run every ${updateEvery} seconds!`);
+            // console.log(`this will run every ${updateEvery} seconds!`);
             setTimer(new Date());
         }, updateEvery * 1000);
         return () => clearInterval(interval);
