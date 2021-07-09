@@ -17,7 +17,6 @@ import {
     Delete as DeleteIcon,
     Edit as EditIcon,
     AccessTime as AccessTimeIcon,
-    CheckCircleOutline as CheckCircleOutlineIcon,
 } from "@material-ui/icons";
 import moment from "moment";
 

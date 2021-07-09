@@ -15,6 +15,7 @@ import {
     Delete as DeleteIcon,
     CheckCircleOutline as CheckCircleOutlineIcon,
 } from "@material-ui/icons";
+import moment from "moment";
 
 const CompletedTodo = () => {
     return (
@@ -23,7 +24,34 @@ const CompletedTodo = () => {
                 style={{ width: "100%", height: "100%" }}
                 badgeContent={<CheckCircleOutlineIcon style={{ color: "green" }} />}
             >
-                <Card className={classes.todoCard}></Card>
+                <Card className={classes.todoCard}>
+                    <CardContent className={classes.cardContent}>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {task}
+                        </Typography>
+                        <Typography variant="body2" component="p" color="textSecondary">
+                            {description}
+                        </Typography>
+                    </CardContent>
+                    <Typography
+                        variant="body2"
+                        color="primary"
+                        className={classes.timeRemaining}
+                        style={{ paddingLeft: 8, lineHeight: 1 }}
+                    >
+                        due {moment(dueDate).fromNow()}
+                    </Typography>
+                    <CardActions className={classes.cardActions} style={{ paddingTop: 1 }}>
+                        <Button className={classes.completeBtn} variant="contained" color="primary">
+                            Complete
+                        </Button>
+                        <div>
+                            <IconButton onClick={() => handleDelete(_id)} size="medium">
+                                <DeleteIcon />
+                            </IconButton>
+                        </div>
+                    </CardActions>
+                </Card>
             </Badge>
         </Grid>
     );
